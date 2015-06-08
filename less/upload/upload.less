@@ -1,0 +1,49 @@
+@import "upload-settings.less";
+.upload {
+	.clearfix;
+	padding: 0;
+	text-align: center;
+	.drag-and-drop-zone {
+		min-height: 100px;
+		line-height: 100px;
+		border: @upload-border-width solid @upload-border-color;
+		border-radius: @upload-border-radius;
+		cursor: pointer;
+		.noselect;
+		&.drag-enter {
+			background-color: @upload-drag-background-color;
+		}
+	}
+
+	.upload-files {
+		display: block;
+		border-collapse: separate;
+		border-spacing: 10px;
+		overflow-y: auto;
+		& > * {
+			display: table-row;
+			& > .file-progress-name {
+				display: table-cell;
+				text-align: left;
+				white-space: nowrap;
+			}
+
+			& > .file-progress-bar {
+				display: table-cell;
+				width: 100%;
+				& > * {
+					display: inline-block;
+					line-height: 19px;
+				}
+			}
+
+			& > input[type=button] , & > button {
+				border: 0;
+				padding: 2px 4px;
+				margin: -2px -4px;
+				border-radius: 10px;
+			}
+		}
+	}
+}
+

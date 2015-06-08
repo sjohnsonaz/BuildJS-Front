@@ -1,0 +1,36 @@
+@import "grid.less";
+@import "input/input-widget.less";
+.form-control {
+	.clearfix;
+	& > .form-control-iterator-label {
+		.columns (1 , 5);
+		.offset (1 , 5);
+		padding: 10px 20px 10px 20px;
+	}
+
+	& > .form-control-iterator-control {
+		.columns (2 , 5);
+	}
+}
+/*
+.build-ui-Switcher {
+	& > * {
+		position: absolute;
+		overflow: hidden;
+		top: -9999px;
+		left: -9999px;
+		visibility: hidden;
+		height: 0px;
+		width: 0px;
+		&.switcher-visible {
+			position: relative;
+			overflow: visible;
+			top: 0px;
+			left: 0px;
+			visibility: inherit;
+			height: auto;
+			width: auto;
+		}
+	}
+}
+ */
