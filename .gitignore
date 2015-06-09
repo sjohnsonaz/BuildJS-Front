@@ -1,0 +1,8 @@
+node_modules/
+hidden/
+public/doc/
+public/min/
+public/vendor
+public/css
+logs/
+bower_components/

@@ -1,0 +1,16 @@
+{
+  "name": "BuildJS-Front",
+  "version": "0.1.0",
+  "description": "Class definition and loading for JavaScript.  Also includes UI and MVC Frameworks.",
+  "main": "public/js/build/application/DemoApplication.js",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "fontawesome": "4.x.x",
+    "normalize-css": "3.x.x",
+    "BuildJS": "~0.1.0"
+  },
+  "devDependencies": {}
+}
