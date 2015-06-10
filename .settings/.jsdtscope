@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="bower_components/BuildJS/js"/>
+	<classpathentry kind="src" path="bower_components/BuildJS/polyfill"/>
+	<classpathentry excluding="widget/editor/|service/|form/option/|widget/authentication/|widget/progress/|binding/|widget/video/|widget/code/|storage/|form/container/|widget/carousel/|ui/|form/|application/|history/|widget/calendar/|form/input/|widget/upload/|widget/media/|container/list/|widget/user/|mvvm/|widget/menu/|widget/popup/|widget/canvas/|widget/toggle/|widget/grid/|widget/tab/|ui/template/|ui/element/|container/table/|widget/collapsible/|utility/|widget/modal/" kind="src" path="js/build"/>
+	<classpathentry kind="src" path="js/build/application"/>
+	<classpathentry kind="src" path="js/build/binding"/>
+	<classpathentry kind="src" path="js/build/container/list"/>
+	<classpathentry kind="src" path="js/build/container/table"/>
+	<classpathentry excluding="option/|container/|input/" kind="src" path="js/build/form"/>
+	<classpathentry kind="src" path="js/build/form/container"/>
+	<classpathentry kind="src" path="js/build/form/input"/>
+	<classpathentry kind="src" path="js/build/form/option"/>
+	<classpathentry kind="src" path="js/build/history"/>
+	<classpathentry kind="src" path="js/build/mvvm"/>
+	<classpathentry kind="src" path="js/build/service"/>
+	<classpathentry kind="src" path="js/build/storage"/>
+	<classpathentry excluding="template/|element/" kind="src" path="js/build/ui"/>
+	<classpathentry kind="src" path="js/build/ui/element"/>
+	<classpathentry kind="src" path="js/build/ui/template"/>
+	<classpathentry kind="src" path="js/build/utility"/>
+	<classpathentry kind="src" path="js/build/widget/authentication"/>
+	<classpathentry kind="src" path="js/build/widget/calendar"/>
+	<classpathentry kind="src" path="js/build/widget/canvas"/>
+	<classpathentry kind="src" path="js/build/widget/carousel"/>
+	<classpathentry kind="src" path="js/build/widget/code"/>
+	<classpathentry kind="src" path="js/build/widget/collapsible"/>
+	<classpathentry kind="src" path="js/build/widget/editor"/>
+	<classpathentry kind="src" path="js/build/widget/grid"/>
+	<classpathentry kind="src" path="js/build/widget/media"/>
+	<classpathentry kind="src" path="js/build/widget/menu"/>
+	<classpathentry kind="src" path="js/build/widget/modal"/>
+	<classpathentry kind="src" path="js/build/widget/popup"/>
+	<classpathentry kind="src" path="js/build/widget/progress"/>
+	<classpathentry kind="src" path="js/build/widget/tab"/>
+	<classpathentry kind="src" path="js/build/widget/toggle"/>
+	<classpathentry kind="src" path="js/build/widget/upload"/>
+	<classpathentry kind="src" path="js/build/widget/user"/>
+	<classpathentry kind="src" path="js/build/widget/video"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
