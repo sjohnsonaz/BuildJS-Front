@@ -2,8 +2,8 @@
  * @class build.service.DataSource
  * @extends build.Module
  */
-Build('build.service.DataSource', [ 'build::build.Module' ], function($define,
-		$super) {
+Build('build.service.DataSource', [ 'build::build.Module',
+		'build::build.utility.ObservableArray' ], function($define, $super) {
 	$define({
 		$extends : 'build.Module',
 		/**
@@ -11,17 +11,19 @@ Build('build.service.DataSource', [ 'build::build.Module' ], function($define,
 		 */
 		$constructor : function DataSource(service) {
 			$super(this)();
-			this.service = service;
-			this.columns;
-			this.pageSize;
-			this.sortedColumn;
-			this.sortedDirection;
-			this.page;
-			this.rowCount;
-			this.activeRows;
-			this.lockRefresh;
-			this.run;
-			this.clear;
+			this.watchValue('service', service);
+			this.watchValue('columns', build.utility.ObservableArray());
+			this.watchValue('pageSize', 15);
+			this.watchValue('sortedColumn', null);
+			this.watchValue('sortedDirection', null);
+			this.watchValue('page', 0);
+			this.watchValue('rowCount', 0);
+			this.watchValue('activeRows', build.utility.ObservableArray());
+			this.watchValue('lockRefresh', false);
+			this.run = function() {
+			};
+			this.clear = function() {
+			};
 		}
 	});
 });
