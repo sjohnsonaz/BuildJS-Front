@@ -1,10 +1,11 @@
 @import "../settings.less";
 
 @progress-bar-margin: @default-margin;
+@progress-bar-height: 20px;
 @progress-bar-background-color: @default-foreground-background-color;
 @progress-bar-border-width: @default-border-width;
 @progress-bar-border-color: @default-border-color;
-@progress-bar-border-radius: @default-border-radius;
+@progress-bar-border-radius: @progress-bar-height / 2;//@default-border-radius;
 @progress-bar-transition-duration: 0.5s;
 
 @progress-bar-normal-background-color: @blue-dark;

@@ -4,7 +4,7 @@
     padding: 0;
     margin: @progress-bar-margin;
     width: 100%;
-    height: 20px;
+    height: @progress-bar-height;
     border: @progress-bar-border-width solid @progress-bar-border-color;
     background-color: @progress-bar-background-color;
     border-radius: @progress-bar-border-radius;
@@ -17,6 +17,7 @@
         color: @progress-bar-normal-color;
         font-size: 12px;
         text-align: center;
+        line-height: @progress-bar-height - 2 * @progress-bar-border-width;
         border-radius: @progress-bar-border-radius - @progress-bar-border-width;
         transition: width @progress-bar-transition-duration ease;
     }
