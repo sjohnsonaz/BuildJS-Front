@@ -2,8 +2,7 @@
  * @class build.widget.popover.Popover
  * @extends build.ui.Widget
  */
-Build('build.widget.popover.Popover', [ 'build::build.ui.Widget' ], function(
-		$define, $super) {
+Build('build.widget.popover.Popover', [ 'build::build.ui.Widget' ], function($define, $super) {
 	$define({
 		$extends : 'build.ui.Container',
 		/**
@@ -49,7 +48,7 @@ Build('build.widget.popover.Popover', [ 'build::build.ui.Widget' ], function(
 				return value;
 			});
 		},
-		$static: {
+		$static : {
 			position : {
 				top : 'popover-top',
 				bottom : 'popover-bottom',
