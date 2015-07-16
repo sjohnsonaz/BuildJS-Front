@@ -1,13 +1,7 @@
 @import "popover-settings.less";
+@import "../mixins.less";
 
-@popover-spacing: 7px;
-@popover-padding: 10px;
-@popover-border-width: 1px;
-@popover-border-color: #888;
-@popover-border-radius: 5px;
-@popover-background-color: #fff;
 @popover-diagonal: @popover-spacing * sqrt(2);
-@popover-box-shadow: 2px 2px 5px 0 #444;
 
 .popover-trigger {
 	position: relative;
@@ -16,22 +10,63 @@
 .popover {
 	display: block;
 	position: absolute;
-	top: 0;
-	left: 100%;
 	min-width: 30vw;
-	padding-left: @popover-spacing;
 	z-index: 1;
 	opacity: 0;
 	visibility: hidden;
 	transition: visibility 0s, opacity 0.3s;
 	-webkit-backface-visibility: hidden;
 	-webkit-filter: blur(0);
+	&.popover-top {
+		bottom: 100%;
+		padding-bottom: @popover-spacing;
+		left: 50%;
+		.transform(translateX(-50%));
+	}
+	&.popover-right {
+		left: 100%;
+		padding-left: @popover-spacing;
+		top: 50%;
+		.transform(translateY(-50%));
+	}	
+	&.popover-bottom {
+		top: 100%;
+		padding-top: @popover-spacing;
+		left: 50%;
+		.transform(translateX(-50%));
+	}	
+	&.popover-left {
+		right: 100%;
+		padding-right: @popover-spacing;
+		top: 50%;
+		.transform(translateY(-50%));
+	}
+	.popover-top.popover-align-left&,
+	.popover-bottom.popover-align-left& {
+		left: 0;
+		transform: none;
+	}
+	.popover-top.popover-align-right&,
+	.popover-bottom.popover-align-right& {
+		right: 0;
+		left: auto;
+		transform: none;
+	}
+	.popover-right.popover-align-top&,
+	.popover-left.popover-align-top& {
+		top: 0;
+		transform: none;
+	}			
+	.popover-right.popover-align-bottom&,
+	.popover-left.popover-align-bottom& {
+		top: auto;
+		bottom: 0;
+		transform: none;
+	}
 	&:before {
 		content: '';
 		display: block;
 		position: absolute;
-		transform: translateX(-@popover-diagonal / 2) translateY(-50%) rotate(45deg);
-		top: 50%;
 		height: @popover-diagonal;
 		width: @popover-diagonal;
 		border: @popover-border-width solid @popover-border-color;
@@ -40,6 +75,46 @@
 		box-shadow: @popover-box-shadow;
 		-webkit-backface-visibility: hidden;
 		-webkit-filter: blur(0);
+		.popover-top& {
+			.transform(translateY(-@popover-diagonal / 2) translateX(-50%) rotate(45deg));
+			left: 50%;
+			bottom: 0;
+			margin-bottom: -@popover-diagonal / 4; 
+		}
+		.popover-right& {
+			.transform(translateX(-@popover-diagonal / 2) translateY(-50%) rotate(45deg));
+			top: 50%;
+		}
+		.popover-bottom& {
+			.transform(translateX(-@popover-diagonal / 2) translateY(-50%) rotate(45deg));
+			left: 50%;
+		}
+		.popover-left& {
+			.transform(translateX(-@popover-diagonal / 2) translateY(-50%) rotate(45deg));
+			top: 50%;
+		}
+		.popover-top.popover-align-left&,
+		.popover-bottom.popover-align-left& {
+			right: auto;
+			left: 0;
+			.transform(none);
+		}
+		.popover-top.popover-align-right&,
+		.popover-bottom.popover-align-right& {
+			right: 0;
+			.transform(none);
+		}
+		.popover-right.popover-align-top&,
+		.popover-left.popover-align-top& {
+			top: 0;
+			.transform(none);
+		}			
+		.popover-right.popover-align-bottom&,
+		.popover-left.popover-align-bottom& {
+			top: auto;
+			bottom: 0;
+			.transform(none);
+		}
 	}
 
 	&:after {
@@ -47,17 +122,70 @@
 		display: block;
 		position: absolute;
 		background: @popover-background-color;
-		background: -webkit-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-		background: -moz-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-		background: -o-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-		background: linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-		transform: translateX(@popover-border-width - @popover-diagonal / 2) translateY(-50%) rotate(45deg);
-		top: 50%;
 		height: @popover-diagonal;
 		width: @popover-diagonal;
 		z-index: 1;
 		-webkit-backface-visibility: hidden;
 		-webkit-filter: blur(0);
+		.popover-top& {
+			background: -webkit-linear-gradient(-45deg, @popover-background-color 51%, transparent 51%);
+			background: -moz-linear-gradient(-45deg, @popover-background-color 51%, transparent 51%);
+			background: -o-linear-gradient(-45deg, @popover-background-color 51%, transparent 51%);
+			background: linear-gradient(-45deg, @popover-background-color 51%, transparent 51%);
+			.transform(translateY(-@popover-diagonal / 2 - @popover-border-width) translateX(-50%) rotate(45deg));
+			left: 50%;
+			bottom: 0;
+			margin-bottom: -@popover-diagonal / 4; 
+		}
+		.popover-right& {
+			background: -webkit-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			background: -moz-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			background: -o-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			background: linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			transform: translateX(@popover-border-width - @popover-diagonal / 2) translateY(-50%) rotate(45deg);
+			top: 50%;
+		}
+		.popover-bottom& {
+			background: -webkit-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			background: -moz-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			background: -o-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			background: linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			transform: translateY(@popover-border-width - @popover-diagonal / 2) translateX(-50%) rotate(45deg);
+			left: 50%;
+			bottom: 100%;
+			margin-bottom: -@popover-diagonal * 3
+			
+		}
+		.popover-left& {
+			background: -webkit-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			background: -moz-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			background: -o-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			background: linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			transform: translateX(@popover-border-width - @popover-diagonal / 2) translateY(-50%) rotate(45deg);
+			top: 50%;
+		}
+		.popover-top.popover-align-left&,
+		.popover-bottom.popover-align-left& {
+			right: auto;
+			left: 0;
+			transform: none;
+		}
+		.popover-top.popover-align-right&,
+		.popover-bottom.popover-align-right& {
+			right: 0;
+			transform: none;
+		}
+		.popover-right.popover-align-top&,
+		.popover-left.popover-align-top& {
+			top: 0;
+			transform: none;
+		}			
+		.popover-right.popover-align-bottom&,
+		.popover-left.popover-align-bottom& {
+			top: auto;
+			bottom: 0;
+			transform: none;
+		}
 	}
 
 	& .popover-content {
