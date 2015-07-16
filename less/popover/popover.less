@@ -1,13 +1,16 @@
 @import "popover-settings.less";
+
+@popover-spacing: 7px;
+@popover-padding: 10px;
+@popover-border-width: 1px;
+@popover-border-color: #888;
+@popover-border-radius: 5px;
+@popover-background-color: #fff;
+@popover-diagonal: @popover-spacing * sqrt(2);
+@popover-box-shadow: 2px 2px 5px 0 #444;
+
 .popover-trigger {
-	display: inline-block;
 	position: relative;
-	padding: 10px;
-	border: 1px solid #888;
-	background-color: #aaa;
-	&:hover > .popover {
-		opacity: 1;
-	}
 }
 
 .popover {
@@ -16,23 +19,25 @@
 	top: 0;
 	left: 100%;
 	min-width: 30vw;
-	margin-left: 10px;
+	margin-left: @popover-spacing;
 	z-index: 1;
 	opacity: 0;
-	transition: opacity 0.3s;
+	visibility: hidden;
+	transition: visibility 0s, opacity 0.3s;
 	-webkit-backface-visibility: hidden;
 	-webkit-filter: blur(0);
 	&:before {
 		content: '';
 		display: block;
 		position: absolute;
-		transform: translateX(-5px) translateY(-50%) rotate(45deg);
+		transform: translateX(-@popover-diagonal / 2) translateY(-50%) rotate(45deg);
 		top: 50%;
-		height: 10px;
-		width: 10px;
+		height: @popover-diagonal;
+		width: @popover-diagonal;
+		border: @popover-border-width solid @popover-border-color;
 		background-color: #888;
 		z-index: -1;
-		box-shadow: 0px 0px 5px 0 #444;
+		box-shadow: @popover-box-shadow;
 		-webkit-backface-visibility: hidden;
 		-webkit-filter: blur(0);
 	}
@@ -41,21 +46,33 @@
 		content: '';
 		display: block;
 		position: absolute;
-		background: -webkit-linear-gradient(45deg, #aaa 59%, transparent 59%);
-		transform: translateX(-4px) translateY(-50%) rotate(45deg);
+		background: @popover-background-color;
+		background: -webkit-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+		background: -moz-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+		background: -o-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+		background: linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+		transform: translateX(@popover-border-width - @popover-diagonal / 2) translateY(-50%) rotate(45deg);
 		top: 50%;
-		height: 8px;
-		width: 8px;
+		height: @popover-diagonal;
+		width: @popover-diagonal;
 		z-index: 1;
 		-webkit-backface-visibility: hidden;
 		-webkit-filter: blur(0);
 	}
 
 	& .popover-content {
-		background-color: #aaa;
-		border: 1px solid #888;
-		box-shadow: 0px 0px 5px 0 #444;
+		padding: @popover-padding;
+		background-color: @popover-background-color;
+		border: @popover-border-width solid @popover-border-color;
+		border-radius: @popover-border-radius;
+		box-shadow: @popover-box-shadow;
 		z-index: 1;
+	}
+	
+	*:hover > &,
+	&.popover-open {
+		opacity: 1;
+		visibility: visible;
 	}
 }
 
