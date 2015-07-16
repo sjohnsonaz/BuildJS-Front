@@ -2,6 +2,9 @@
 @import "../mixins.less";
 
 @popover-diagonal: @popover-spacing * sqrt(2);
+@quarter-pi: 3.141592653589793 / 4;
+@popover-box-shadow-x-prime: @popover-box-shadow-x * cos(@quarter-pi) + @popover-box-shadow-y * sin(@quarter-pi);
+@popover-box-shadow-y-prime: -@popover-box-shadow-x * sin(@quarter-pi) + @popover-box-shadow-y * cos(@quarter-pi);
 
 .popover-trigger {
 	position: relative;
@@ -72,7 +75,7 @@
 		border: @popover-border-width solid @popover-border-color;
 		background-color: #888;
 		z-index: -1;
-		box-shadow: @popover-box-shadow;
+		box-shadow: @popover-box-shadow-x-prime @popover-box-shadow-y-prime @popover-box-shadow-additional;
 		-webkit-backface-visibility: hidden;
 		-webkit-filter: blur(0);
 		.popover-top& {
@@ -179,7 +182,7 @@
 		background-color: @popover-background-color;
 		border: @popover-border-width solid @popover-border-color;
 		border-radius: @popover-border-radius;
-		box-shadow: @popover-box-shadow;
+		box-shadow: @popover-box-shadow-x @popover-box-shadow-y @popover-box-shadow-additional;
 		z-index: 1;
 	}
 	
