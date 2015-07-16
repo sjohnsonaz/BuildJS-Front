@@ -94,12 +94,12 @@
 
 .linear-gradient (@direction , @color0 , @color1) {
 	@props: ~`"@{arguments}".replace(/[\[\]]/g, '')`;
-	background-color: average(@color0, @color1);
-	background-image: -webkit-linear-gradient(@props);
-	background-image: -moz-linear-gradient(@props);
-	background-image: -ms-linear-gradient(@props);
-	background-image: -o-linear-gradient(@props);
-	background-image: linear-gradient(@props);
+	//background-color: average(@color0, @color1);
+	background: -webkit-linear-gradient(@props);
+	background: -moz-linear-gradient(@props);
+	background: -ms-linear-gradient(@props);
+	background: -o-linear-gradient(@props);
+	background: linear-gradient(@props);
 }
 
 .repeating-linear-gradient (@direction , @color0 , @color1) {

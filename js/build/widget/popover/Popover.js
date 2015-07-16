@@ -16,7 +16,7 @@ Build('build.widget.popover.Popover', [ 'build::build.ui.Widget' ], function(
 			this.innerElement = this.content;
 			this.element.appendChild(this.innerElement);
 			this.element.className = 'popover';
-			this.element.classList.add('popover-top');
+			this.element.classList.add('popover-right');
 		}
 	});
 });

@@ -76,10 +76,9 @@
 		-webkit-backface-visibility: hidden;
 		-webkit-filter: blur(0);
 		.popover-top& {
-			.transform(translateY(-@popover-diagonal / 2) translateX(-50%) rotate(45deg));
+			.transform(translateY(@popover-diagonal / 2) translateX(-50%) rotate(45deg));
 			left: 50%;
-			bottom: 0;
-			margin-bottom: -@popover-diagonal / 4; 
+			bottom: @popover-spacing;
 		}
 		.popover-right& {
 			.transform(translateX(-@popover-diagonal / 2) translateY(-50%) rotate(45deg));
@@ -90,8 +89,9 @@
 			left: 50%;
 		}
 		.popover-left& {
-			.transform(translateX(-@popover-diagonal / 2) translateY(-50%) rotate(45deg));
+			.transform(translateX(@popover-diagonal / 2) translateY(-50%) rotate(45deg));
 			top: 50%;
+			right: @popover-spacing;
 		}
 		.popover-top.popover-align-left&,
 		.popover-bottom.popover-align-left& {
@@ -128,41 +128,27 @@
 		-webkit-backface-visibility: hidden;
 		-webkit-filter: blur(0);
 		.popover-top& {
-			background: -webkit-linear-gradient(-45deg, @popover-background-color 51%, transparent 51%);
-			background: -moz-linear-gradient(-45deg, @popover-background-color 51%, transparent 51%);
-			background: -o-linear-gradient(-45deg, @popover-background-color 51%, transparent 51%);
-			background: linear-gradient(-45deg, @popover-background-color 51%, transparent 51%);
-			.transform(translateY(-@popover-diagonal / 2 - @popover-border-width) translateX(-50%) rotate(45deg));
+			.linear-gradient(-45deg, @popover-background-color 51%, transparent 51%);
+			.transform(translateY(@popover-diagonal / 2 - @popover-border-width) translateX(-50%) rotate(45deg));
 			left: 50%;
-			bottom: 0;
-			margin-bottom: -@popover-diagonal / 4; 
+			bottom: @popover-spacing;
 		}
 		.popover-right& {
-			background: -webkit-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-			background: -moz-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-			background: -o-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-			background: linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			.linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
 			transform: translateX(@popover-border-width - @popover-diagonal / 2) translateY(-50%) rotate(45deg);
 			top: 50%;
 		}
 		.popover-bottom& {
-			background: -webkit-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-			background: -moz-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-			background: -o-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-			background: linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+			.linear-gradient(135deg, @popover-background-color 51%, transparent 51%);
 			transform: translateY(@popover-border-width - @popover-diagonal / 2) translateX(-50%) rotate(45deg);
 			left: 50%;
-			bottom: 100%;
-			margin-bottom: -@popover-diagonal * 3
-			
+			top: @popover-spacing;			
 		}
 		.popover-left& {
-			background: -webkit-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-			background: -moz-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-			background: -o-linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-			background: linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
-			transform: translateX(@popover-border-width - @popover-diagonal / 2) translateY(-50%) rotate(45deg);
+			.linear-gradient(-135deg, @popover-background-color 51%, transparent 51%);
+			transform: translateX(@popover-diagonal / 2 - @popover-border-width) translateY(-50%) rotate(45deg);
 			top: 50%;
+			right: @popover-spacing;
 		}
 		.popover-top.popover-align-left&,
 		.popover-bottom.popover-align-left& {
