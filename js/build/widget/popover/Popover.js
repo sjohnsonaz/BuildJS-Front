@@ -9,14 +9,60 @@ Build('build.widget.popover.Popover', [ 'build::build.ui.Widget' ], function(
 		/**
 		 * @constructor
 		 */
-		$constructor : function Popover() {
+		$constructor : function Popover(open, position, alignment) {
 			$super(this)();
+			var self = this;
 			this.content = document.createElement('div');
 			this.content.className = 'popover-content';
 			this.innerElement = this.content;
 			this.element.appendChild(this.innerElement);
 			this.element.className = 'popover';
-			this.element.classList.add('popover-right');
+			this.watchClass('open', 'popover-open', !!open);
+			this.watchValue('popoverPosition', position || 'top', undefined, function(value, hidden, cancel) {
+				var positionClass;
+				if (hidden) {
+					positionClass = build.widget.popover.Popover.position[hidden];
+					if (positionClass) {
+						self.element.classList.remove(positionClass)
+					}
+				}
+				if (!build.widget.popover.Popover.position[value]) {
+					value = 'top';
+				}
+				positionClass = build.widget.popover.Popover.position[value];
+				self.element.classList.add(positionClass);
+				return value;
+			});
+			this.watchValue('popoverAlign', alignment || 'center', undefined, function(value, hidden, cancel) {
+				var alignmentClass;
+				if (hidden) {
+					alignmentClass = build.widget.popover.Popover.alignment[hidden];
+					if (alignmentClass) {
+						self.element.classList.remove(alignmentClass)
+					}
+				}
+				if (!build.widget.popover.Popover.alignment[value]) {
+					value = 'center';
+				}
+				alignmentClass = build.widget.popover.Popover.alignment[value];
+				self.element.classList.add(alignmentClass);
+				return value;
+			});
+		},
+		$static: {
+			position : {
+				top : 'popover-top',
+				bottom : 'popover-bottom',
+				left : 'popover-left',
+				right : 'popover-right'
+			},
+			alignment : {
+				left : 'popover-align-left',
+				center : 'popover-align-center',
+				right : 'popover-align-right',
+				top : 'popover-align-top',
+				bottom : 'popover-align-bottom',
+			}
 		}
 	});
 });
