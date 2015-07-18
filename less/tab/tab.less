@@ -14,8 +14,9 @@
 			position: relative;
 			margin: 0px 10px 0px 0px;
 			padding: 0px;
-			top: @tab-border-width;
+			//top: @tab-border-width;
 			border: @tab-border-width solid @tab-border-color;
+			border-bottom: 0;
 			.border-top-left-radius(@tab-border-radius);
 			.border-top-right-radius(@tab-border-radius);
 			background-color: @tab-inactive-background-color;
@@ -40,9 +41,17 @@
 		}
 
 		& > li.tab-active {
-			border-bottom: @tab-border-width solid @tab-background-color;
 			background-color: @tab-background-color;
-			//z-index: 1;
+			&:after {
+				content: '';
+				display: block;
+				position: absolute;
+				bottom: -1px;
+				height: @tab-border-width;
+				width: 100%;
+				background-color: @tab-background-color;
+				z-index: 1;
+			}
 		}
 	}
 
