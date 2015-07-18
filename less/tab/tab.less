@@ -14,8 +14,8 @@
 			position: relative;
 			margin: 0px 10px 0px 0px;
 			padding: 0px;
-			//top: @input-border-width;
-			//border: @input-border-width solid @input-default-border-color;
+			top: @tab-border-width;
+			border: @tab-border-width solid @tab-border-color;
 			.border-top-left-radius(@tab-border-radius);
 			.border-top-right-radius(@tab-border-radius);
 			background-color: @tab-inactive-background-color;
@@ -40,7 +40,7 @@
 		}
 
 		& > li.tab-active {
-			//border-bottom: @input-border-width solid @tab-background-color;
+			border-bottom: @tab-border-width solid @tab-background-color;
 			background-color: @tab-background-color;
 			//z-index: 1;
 		}
@@ -51,7 +51,7 @@
 		position: relative;
 		margin: 0px;
 		padding: @tab-body-padding;
-		//border: @input-border-width solid @input-default-border-color;
+		border: @tab-border-width solid @tab-border-color;
 		background-color: @tab-background-color;
 	    .border-radius-all(0px, @tab-border-radius, @tab-border-radius, @tab-border-radius);
 	    box-shadow: @tab-box-shadow;
