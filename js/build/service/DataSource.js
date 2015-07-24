@@ -25,14 +25,14 @@ Build('build.service.DataSource', [ 'build::build.Module', 'build::build.utility
 				runCount++;
 				var runID = runCount;
 				self.lockRefresh = false;
-				self.refreshData(self.page, self.pageSize, self.sortedColumn, self.sortedDirection, function(data) {
+				self.service(self.page, self.pageSize, self.sortedColumn, self.sortedDirection, function(data) {
 					if (runID == runCount) {
 						self.activeRows = data.Results;
 						self.rowCount = data.ResultCount;
 					}
 				}, function() {
 					if (runID == runCount) {
-						self.activeRows = [];
+						self.activeRows.removeAll();
 						self.rowCount = 0;
 						console.log('refreshData error');
 					}
@@ -42,7 +42,7 @@ Build('build.service.DataSource', [ 'build::build.Module', 'build::build.utility
 				var lockRefresh = this.lockRefresh;
 				this.page = 0;
 				this.rowCount = 0;
-				this.activeRows = [];
+				this.activeRows.removeAll();
 				this.lockRefresh = lockRefresh;
 			};
 			this.bind([ {
