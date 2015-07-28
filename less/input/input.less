@@ -25,7 +25,7 @@ input[type="button"] {
     display: inline-block;
     margin: @input-margin;
     padding: @input-padding;
-    border: 0;//@input-border-width solid @input-default-border-color;
+    border: @input-border-width solid @input-default-border-color;
     color: @input-default-color;
     background-color: @input-default-background-color;
     .border-radius(@input-border-radius);
@@ -44,7 +44,7 @@ input[type="button"] {
 }
 
 .button-primary {
-    border: 0;//@input-border-width solid @input-primary-border-color;
+    border: @input-border-width solid @input-primary-border-color;
     color: @input-primary-color;
     background-color: @input-primary-background-color;
     &:hover {
@@ -58,7 +58,7 @@ input[type="button"] {
 }
 
 .button-danger {
-    border: 0;//@input-border-width solid @input-danger-border-color;
+    border: @input-border-width solid @input-danger-border-color;
     color: @input-danger-color;
     background-color: @input-danger-background-color;
     &:hover {
@@ -123,6 +123,11 @@ textarea {
     .border-radius(@input-border-radius);
     border: @input-border-width solid @input-default-border-color;
     font-family: Arial;
+    box-shadow: @input-box-shadow-height0;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
 }
 
 .label,
@@ -145,4 +150,6 @@ select {
 	border: @input-border-width solid @input-default-border-color;
 	font-family: Arial;
 	overflow: auto;
+    box-shadow: @input-box-shadow-height0;
 }
+
