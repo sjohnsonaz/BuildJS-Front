@@ -47,6 +47,22 @@ Build('build.widget.popover.Popover', [ 'build::build.ui.Widget' ], function($de
 				self.element.classList.add(alignmentClass);
 				return value;
 			});
+			/*
+			this.subscribe('open', function(value) {
+				if (value) {
+					// Adjust document height.
+					window.setTimeout(function() {
+						var height = document.body.scrollTop + self.content.getBoundingClientRect().bottom;
+						if (document.body.getBoundingClientRect().height < height) {
+							document.body.style.minHeight = height + 'px';
+						}
+					}, 10);
+				} else {
+					// Remove document height adjustment.
+					document.body.style.minHeight = null;
+				}
+			});
+			*/
 		},
 		$static : {
 			position : {
