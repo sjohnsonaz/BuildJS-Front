@@ -41,6 +41,19 @@
 				clear: both;
 				content: '';
 			}
+			.modal-header {
+				margin: -@modal-padding;
+				padding: @modal-padding;
+				border-bottom: @modal-border-width solid @modal-border-color;
+				background-color: @modal-header-background-color;
+				border-top-left-radius: @modal-border-radius;
+				border-top-right-radius: @modal-border-radius;
+				&:after {
+					display: table;
+					clear: both;
+					content: '';
+				}
+			}
 		}
 	}
 }
