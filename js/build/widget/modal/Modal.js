@@ -10,7 +10,7 @@ Build('build.widget.modal.Modal', [ 'build::build.ui.Container', 'build::build.u
 		 */
 		/**
 		 * @property mask
-		 * @property body
+		 * @property content
 		 */
 		$constructor : function Modal() {
 			$super(this)();
@@ -20,8 +20,8 @@ Build('build.widget.modal.Modal', [ 'build::build.ui.Container', 'build::build.u
 			this.mask.className = 'modal-mask';
 			this.scroller = document.createElement('div');
 			this.scroller.className = 'modal-scroll';
-			this.body = document.createElement('div');
-			this.body.className = 'modal-content';
+			this.content = document.createElement('div');
+			this.content.className = 'modal-content';
 			this.element.style.display = 'none';
 			this.watchClass('open', 'modal-open', false, undefined, function(value, hidden, cancel) {
 				if (value) {
@@ -31,7 +31,7 @@ Build('build.widget.modal.Modal', [ 'build::build.ui.Container', 'build::build.u
 						opacity : 'auto'
 					}, 300, function() {
 					});
-					build.utility.Animation.animate(self.body, {
+					build.utility.Animation.animate(self.content, {
 						top : 'auto'
 					}, 300, function() {
 					});
@@ -41,7 +41,7 @@ Build('build.widget.modal.Modal', [ 'build::build.ui.Container', 'build::build.u
 					}, 300, function() {
 						self.element.style.display = 'none';
 					});
-					build.utility.Animation.animate(self.body, {
+					build.utility.Animation.animate(self.content, {
 						top : '-100%'
 					}, 300, function() {
 					});
@@ -49,12 +49,12 @@ Build('build.widget.modal.Modal', [ 'build::build.ui.Container', 'build::build.u
 				return value;
 			});
 
-			this.innerElement = this.body;
-			this.scroller.appendChild(this.body);
+			this.innerElement = this.content;
+			this.scroller.appendChild(this.content);
 			this.element.appendChild(this.mask);
 			this.element.appendChild(this.scroller);
 
-			this.body.addEventListener('click', function(event) {
+			this.content.addEventListener('click', function(event) {
 				event.stopPropagation();
 			});
 
