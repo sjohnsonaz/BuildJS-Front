@@ -415,7 +415,7 @@ Build('build.ui.Widget', [ 'build::build.Module' ], function($define, $super) {
 				}
 
 				// Append children
-				if (contents) {
+				if (contents !== undefined) {
 					var contents = Array.prototype.splice.call(arguments, 2);
 					var fragment = document.createDocumentFragment();
 					for (var index = 0, length = contents.length; index < length; index++) {
