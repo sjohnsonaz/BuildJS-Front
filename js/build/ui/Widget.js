@@ -397,7 +397,39 @@ Build('build.ui.Widget', [ 'build::build.Module' ], function($define, $super) {
 			/**
 			 * @static
 			 */
-			deferClassName : false
+			deferClassName : false,
+			/**
+			 * @static
+			 */
+			createElement : function(type, attributes, contents) {
+				// Create element
+				var element = document.createElement(type);
+
+				// Apply attributes
+				if (attributes) {
+					for ( var index in attributes) {
+						if (attributes.hasOwnProperty(index)) {
+							element[index] = attributes[index];
+						}
+					}
+				}
+
+				// Append children
+				if (contents) {
+					var contents = Array.prototype.splice.call(arguments, 2);
+					var fragment = document.createDocumentFragment();
+					for (var index = 0, length = contents.length; index < length; index++) {
+						var content = contents[index];
+						if (content instanceof Element) {
+							fragment.appendChild(content);
+						} else {
+							fragment.appendChild(document.createTextNode(content));
+						}
+					}
+					element.appendChild(fragment);
+				}
+				return element;
+			}
 		}
 	});
 });
