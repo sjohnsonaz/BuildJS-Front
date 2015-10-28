@@ -420,7 +420,7 @@ Build('build.ui.Widget', [ 'build::build.Module' ], function($define, $super) {
 					var fragment = document.createDocumentFragment();
 					for (var index = 0, length = contents.length; index < length; index++) {
 						var content = contents[index];
-						if (content instanceof Element) {
+						if (content instanceof Node) {
 							fragment.appendChild(content);
 						} else {
 							fragment.appendChild(document.createTextNode(content));
