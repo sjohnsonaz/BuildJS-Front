@@ -6,6 +6,7 @@
 Build('build.Module', [], function ($define, $super) {
     var cancel = {
         cancel: true
+    };
     $define({
         /**
          * @constructor
