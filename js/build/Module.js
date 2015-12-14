@@ -342,7 +342,7 @@ Build('build.Module', [], function ($define, $super) {
                 if (this.handlers) {
                     var index = this.handlers.indexOf(handler);
                     if (index != -1) {
-                        this.splice(index, 1);
+                        this.handlers.splice(index, 1);
                     }
                 }
             },
