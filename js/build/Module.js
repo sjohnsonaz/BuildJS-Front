@@ -65,27 +65,6 @@ Build('build.Module', [], function ($define, $super) {
                 }
             },
             /**
-             * @method runSet
-             * @param value
-             * @param set
-             */
-            runSet: function (value, set, thisArg) {
-                var output;
-                if (typeof set === 'function') {
-                    if (thisArg) {
-                        output = set.call(thisArg, value, undefined, cancel)
-                    } else {
-                        output = set(value, undefined, cancel);
-                    }
-                    if (output === cancel) {
-                        output = undefined;
-                    }
-                } else {
-                    output = value;
-                }
-                return output;
-            },
-            /**
              * @method watchValue
              * @param name
              * @param value
@@ -93,7 +72,19 @@ Build('build.Module', [], function ($define, $super) {
              * @param set
              */
             watchValue: function (name, value, get, set, thisArg, definition) {
-                var hidden = this.runSet(value, set, thisArg);
+                var hidden;
+                if (typeof set === 'function') {
+                    if (thisArg) {
+                        hidden = set.call(thisArg, value, undefined, cancel)
+                    } else {
+                        hidden = set(value, undefined, cancel);
+                    }
+                    if (hidden === cancel) {
+                        hidden = undefined;
+                    }
+                } else {
+                    hidden = value;
+                }
                 if (hidden !== undefined) {
                     var cache = value;
                 }
@@ -132,7 +123,19 @@ Build('build.Module', [], function ($define, $super) {
              */
             watchValueFunction: function (name, innerName, value, get, set, thisArg, definition, getter, setter) {
                 innerName = innerName || name;
-                var hidden = this.runSet(value, set, thisArg);
+                var hidden;
+                if (typeof set === 'function') {
+                    if (thisArg) {
+                        hidden = set.call(thisArg, value, undefined, cancel)
+                    } else {
+                        hidden = set(value, undefined, cancel);
+                    }
+                    if (hidden === cancel) {
+                        hidden = undefined;
+                    }
+                } else {
+                    hidden = value;
+                }
                 if (hidden !== undefined) {
                     var cache = value;
                     setter(innerName, hidden);
