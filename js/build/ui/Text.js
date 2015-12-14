@@ -36,7 +36,7 @@ Build('build.ui.Text', [ 'build::build.Module' ], function($define, $super) {
 			// TODO: Fix value change detection on setter methods.
 			watchProperty : function(property, name, value, get, set, thisArg, definition) {
 				var self = this;
-				this.watchValueFunction(property, name, value, get, set, thisArg, definition, function(name) {
+				this.watchValue(property, value, get, set, thisArg, definition, name, function(name) {
 					return self.element[name];
 				}, function(name, value) {
 					self.element[name] = value || '';

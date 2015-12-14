@@ -12,7 +12,7 @@ Build('build.ui.Widget', [ 'build::build.Module' ], function($define, $super) {
 	};
 	$define({
 		$extends : 'build.Module',
-		/** 
+		/**
 		 * @constructor
 		 */
 		$constructor : function Widget() {
@@ -162,7 +162,7 @@ Build('build.ui.Widget', [ 'build::build.Module' ], function($define, $super) {
 			// TODO: Fix value change detection on setter methods.
 			watchProperty : function(property, name, value, get, set, thisArg, definition) {
 				var self = this;
-				this.watchValueFunction(property, name, value, get, set, thisArg, definition, function(name) {
+				this.watchValue(property, value, get, set, thisArg, definition, name, function(name) {
 					return self.element[name];
 				}, function(name, value) {
 					self.element[name] = typeof value === 'undefined' ? '' : value
@@ -173,7 +173,7 @@ Build('build.ui.Widget', [ 'build::build.Module' ], function($define, $super) {
 			 */
 			watchAttribute : function(property, attribute, value, get, set, thisArg, definition) {
 				var self = this;
-				this.watchValueFunction(property, attribute, value, get, set, thisArg, definition, function(attribute) {
+				this.watchValue(property, value, get, set, thisArg, definition, attribute, function(attribute) {
 					// TODO: Decide action on undefined
 					return self.element.getAttribute(attribute);
 				}, function(attribute, value) {
@@ -186,7 +186,7 @@ Build('build.ui.Widget', [ 'build::build.Module' ], function($define, $super) {
 			// TODO: Apply value change detection on setter methods.
 			watchStyle : function(property, style, unit, value, get, set, thisArg, definition) {
 				var self = this;
-				this.watchValueFunction(property, style, value, get, set, thisArg, definition, function(style) {
+				this.watchValue(property, value, get, set, thisArg, definition, style, function(style) {
 					if (unit) {
 						return parseFloat(self.element.style[style] || 0);
 					} else {
@@ -206,7 +206,7 @@ Build('build.ui.Widget', [ 'build::build.Module' ], function($define, $super) {
 			 */
 			watchData : function(property, data, value, get, set, thisArg, definition) {
 				var self = this;
-				this.watchValueFunction(property, data, value, get, set, thisArg, definition, function(data) {
+				this.watchValue(property, value, get, set, thisArg, definition, data, function(data) {
 					return self.element.dataset ? self.element.dataset[data] : self.element.getAttribute('data-' + data);
 				}, function(data, value) {
 					self.element.dataset ? self.element.dataset[data] = value : self.element.setAttribute('data-' + data, value);
@@ -266,7 +266,7 @@ Build('build.ui.Widget', [ 'build::build.Module' ], function($define, $super) {
 			 */
 			watchClass : function(property, className, value, get, set, thisArg, definition) {
 				var self = this;
-				this.watchValueFunction(property, className, value, get, set, thisArg, definition, function(className) {
+				this.watchValue(property, value, get, set, thisArg, definition, className, function(className) {
 					return self.element.classList.contains(className);
 				}, function(className, value) {
 					// TODO: Internet Explorer does not support ClassList.toggle.
@@ -327,7 +327,7 @@ Build('build.ui.Widget', [ 'build::build.Module' ], function($define, $super) {
 				}
 			},
 			/**
-			 * 
+			 *
 			 */
 			getPreloadContainer : function() {
 				var preloadContainer = document.getElementById('build-preload-container');
@@ -339,7 +339,7 @@ Build('build.ui.Widget', [ 'build::build.Module' ], function($define, $super) {
 				return preloadContainer;
 			},
 			/**
-			 * 
+			 *
 			 */
 			destroy : function(isDestroying) {
 				$super().destroy(this)();
@@ -386,7 +386,7 @@ Build('build.ui.Widget', [ 'build::build.Module' ], function($define, $super) {
 				return result;
 			},
 			/**
-			 * 
+			 *
 			 */
 			getController : function(element) {
 				element = typeof element === 'string' ? document.getElementById(element) : element;

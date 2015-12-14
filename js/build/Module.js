@@ -66,64 +66,26 @@ Build('build.Module', [], function ($define, $super) {
             },
             /**
              * @method watchValue
-             * @param name
-             * @param value
-             * @param get
-             * @param set
              */
-            watchValue: function (name, value, get, set, thisArg, definition) {
-                var hidden;
-                if (typeof set === 'function') {
-                    if (thisArg) {
-                        hidden = set.call(thisArg, value, undefined, cancel)
-                    } else {
-                        hidden = set(value, undefined, cancel);
-                    }
-                    if (hidden === cancel) {
-                        hidden = undefined;
-                    }
-                } else {
-                    hidden = value;
-                }
-                if (hidden !== undefined) {
-                    var cache = value;
-                }
-                this.propertyCache = this.propertyCache || {};
-                this.propertyCache[name] = function (value) {
-                    cache = value;
-                };
-                Object.defineProperty(this, name, Build.merge({
-                    configurable: true,
-                    enumerable: true,
-                    get: typeof get === 'function' ? function () {
-                        return thisArg ? get.call(thisArg, hidden, this) : get(hidden, this);
-                    } : function () {
-                        return hidden;
-                    },
-                    set: typeof set === 'function' ? function (value) {
-                        if (value !== cache) {
-                            var newValue = thisArg ? set.call(thisArg, value, hidden, cancel) : set(value, hidden, cancel);
-                            if (newValue !== cancel) {
-                                cache = value;
-                                hidden = newValue;
-                                this.publish(name);
-                            }
-                        }
-                    } : function (value) {
-                        if (value !== cache) {
-                            cache = value;
-                            hidden = value;
-                            this.publish(name);
-                        }
-                    }
-                }, definition));
-            },
-            /**
-             * @method watchValueFunction
-             */
-            watchValueFunction: function (name, innerName, value, get, set, thisArg, definition, getter, setter) {
+            watchValue: function (name, value, get, set, thisArg, definition, innerName, getter, setter) {
                 innerName = innerName || name;
                 var hidden;
+
+                function callGetter(innerName) {
+                    if (getter) {
+                        return getter(innerName);
+                    } else {
+                        return hidden;
+                    }
+                }
+
+                function callSetter(innerName, value) {
+                    if (setter) {
+                        setter(innerName, value);
+                    }
+                    hidden = value;
+                }
+
                 if (typeof set === 'function') {
                     if (thisArg) {
                         hidden = set.call(thisArg, value, undefined, cancel)
@@ -138,7 +100,7 @@ Build('build.Module', [], function ($define, $super) {
                 }
                 if (hidden !== undefined) {
                     var cache = value;
-                    setter(innerName, hidden);
+                    callSetter(innerName, hidden);
                 }
                 this.propertyCache = this.propertyCache || {};
                 this.propertyCache[name] = function (value) {
@@ -148,15 +110,15 @@ Build('build.Module', [], function ($define, $super) {
                     configurable: true,
                     enumerable: true,
                     get: typeof get === 'function' ? function () {
-                        return thisArg ? get.call(thisArg, getter(innerName), this) : get(getter(innerName), this);
+                        return thisArg ? get.call(thisArg, callGetter(innerName), this) : get(callGetter(innerName), this);
                     } : function () {
-                        return getter(innerName);
+                        return callGetter(innerName);
                     },
                     set: typeof set === 'function' ? function (value) {
                         if (value !== cache) {
                             var newValue = thisArg ? set.call(thisArg, value, hidden, cancel) : set(value, hidden, cancel);
                             if (newValue !== cancel) {
-                                setter(innerName, newValue);
+                                callSetter(innerName, newValue);
                                 cache = value;
                                 hidden = newValue;
                                 this.publish(name);
@@ -164,7 +126,7 @@ Build('build.Module', [], function ($define, $super) {
                         }
                     } : function (value) {
                         if (value !== cache) {
-                            setter(innerName, value);
+                            callSetter(innerName, value);
                             cache = value;
                             hidden = value;
                             this.publish(name);
